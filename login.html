@@ -1,0 +1,106 @@
+
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <title>AskMeRudukh</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/maincss.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
+
+  <header>
+    <!-- Fixed navbar -->
+    
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand brand_askme" href="#">AskMeRudukh</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item search">
+              <form class="d-flex">
+               <input class="form-control me-2 search_text" type="search" placeholder="Search" aria-label="Search">
+               <button class="btn btn-outline-success search_bottom" type="submit">ASK</button>
+             </form>
+           </li>
+           <li class="nav-item user">
+             <div>
+              <a href=#1 class="href_settings"> Log in </a>
+              <a href=#2> Register </a>
+            </div>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+ <div class="container">
+  
+  <div class ="row">
+   <div class ="col-8">
+    <h2 id="new_question">Log In</h2>
+
+    <form class="login_form" method="post" name="form" onsubmit="return validated()">
+      <div class="row">
+        <div class="col-2">Login</div>
+        <div class="col-4">      
+          <input type="text" name="user" placeholder="login"></div>
+        </div>
+        <div class="row">
+          <div class="col-2">Password</div>
+          <div class="col-4">
+            <input type="Password" name="Password" placeholder="Password" minlength="6">
+            <input required type="submit" class="btn btn-outline-secondary form_log" value="Log in">
+            <p class="form_log"><a href="#1">Create new account</a></p>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+
+    <div class = "col-4">
+      <h2 id="Popular_tags">Popular Tags</h2>
+      <ul>
+       <li>
+        <ul>
+         <li>Perl</li>
+         <li id="red">Python</li>
+         <li>TechnoPark</li>
+       </ul>
+     </li>
+     <li>
+      <ul>
+       <li id="red">MySQL</li>
+       <li id="green">django</li>
+     </ul>
+   </li>
+   <li>
+    <ul>
+     <li>Mail.ru</li>
+     <li>Voloshin</li>
+     <li id="orange">Firefox</li>
+   </ul>
+ </li>
+</ul>
+<h2 id="Best_members">Best Members</h2>
+<ul class="member">
+ <li><a href="#5">Mr.Freeman</a></li>
+ <li><a href="#5">Dr.House</a></li>
+ <li><a href="#5">Bender</a></li>
+ <li><a href="#5">Queen Victoria</a></li>
+ <li><a href="#5">V.Pupkin</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+</main>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
