@@ -45,7 +45,7 @@
   <div class ="row">
    <div class ="col-8">
     <h2 id="new_question">Log In</h2>
-
+    <p id="invisible">Sorry, this email address allready registred</p>
     <form class="login_form" method="post" name="form" onsubmit="return validated()">
       <div class="row logs">
         <div class="col-2">Login</div>
@@ -75,7 +75,7 @@
         <div class="row logs">
           <div class="col-2">Upload your avatar:</div>
           <div class="col-4"><input required type="file" id="g5" name="img0">
-            <input required type="submit" class="btn btn-outline-secondary form_log" value="Sign up">
+            <input required type="submit" class="btn btn-outline-secondary form_log" id="hidden" value="Sign up">
 
           </div>
         </div>
@@ -120,5 +120,6 @@
 
 </main>
 <script src="js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>

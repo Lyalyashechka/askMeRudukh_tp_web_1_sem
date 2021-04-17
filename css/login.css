@@ -23,3 +23,8 @@
 .form_log {
 	margin-top: 3%;
 }
+
+#invisible {
+	color: red;
+	display: none;
+}

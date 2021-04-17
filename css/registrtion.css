@@ -22,3 +22,9 @@
 .logs {
 	margin-top: 2%;
 }
+
+
+#invisible {
+	color: red;
+	display: none;
+}
