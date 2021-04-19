@@ -1,0 +1,30 @@
+.search {
+	width: 80%;
+}
+
+.search_text {
+	width: 30%;
+}
+
+.search_bottom {
+	width: 8%;
+}
+
+.user {
+	margin-top: 0.5%;
+	text-align: center;
+}
+
+
+.login_form {
+	margin-top: 3%;
+}
+
+.form_log {
+	margin-top: 3%;
+}
+
+#invisible {
+	color: red;
+	display: none;
+}

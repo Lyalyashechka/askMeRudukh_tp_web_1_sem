@@ -1,4 +1,22 @@
 from django.shortcuts import render
+
 def index(request):
     return render(request, 'index.html', {})
-# Create your views here.
+
+def ask(request):
+    return render(request, 'ask.html', {})
+
+def login(request):
+    return render(request, 'login.html', {})
+
+def question(request):
+    return render(request, 'question.html', {})
+
+def registration(request):
+    return render(request, 'registration.html', {})
+
+def settings(request):
+    return render(request, 'settings.html', {})
+
+def tag(request):
+    return render(request, 'tag.html', {})

@@ -67,6 +67,12 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_DIRS = [
+    BASE_DIR / "templates",
+]
+
+
+
 WSGI_APPLICATION = 'askMeRudukh.wsgi.application'
 
 
