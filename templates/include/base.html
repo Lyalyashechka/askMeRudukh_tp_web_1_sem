@@ -53,9 +53,9 @@
 </div>
 </div>
 </div>
-
+{% block footer %}    {% endblock footer %}
 </main>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="js/like.js"></script>
+<script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+{% block linkjs %} {% endblock linkjs %}
 </body>
 </html>

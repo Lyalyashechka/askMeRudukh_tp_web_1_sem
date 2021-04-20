@@ -1,0 +1,25 @@
+ {% load static %}
+
+ <div class="row question">
+     <div class="col-3">
+      <img src={% static "img/9320067.jpg" %}>
+
+    </div>
+    <div class="col-9">
+      <h3 class="title"><a href="{% url 'one_question' pk=question.id %}">{{ question.title }}</a></h3>
+      <div class="text">
+      {{ question.text }}
+     </div>
+
+   </div>
+   <div>
+    <button id="like_btn" class="btn">Like</button>
+    <div class="likes">22</div>
+    <div class="row_in_question">
+      <a href="#4" class="Answer_string">Answer(3)</a>
+      Tags:
+      <a href="#4" class="black-jeck">black-jeck</a>
+      <a href="#4">bender</a>
+    </div>
+  </div>
+</div>
