@@ -16,10 +16,11 @@
     <button id="like_btn" class="btn">Like</button>
     <div class="likes">22</div>
     <div class="row_in_question">
-      <a href="#4" class="Answer_string">Answer(3)</a>
+      <a href="{% url 'one_question' pk=question.id %}" class="Answer_string">Answer(3)</a>
       Tags:
-      <a href="#4" class="black-jeck">black-jeck</a>
-      <a href="#4">bender</a>
+        {% for tag in tags %}
+      <a href="{% url "tag" tag=tag %}" class="black-jeck">{{ tag }}</a>
+        {% endfor %}
     </div>
   </div>
 </div>

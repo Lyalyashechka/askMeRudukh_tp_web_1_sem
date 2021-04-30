@@ -8,74 +8,12 @@
 {% endblock header %}
 {% block content %}
     <div class="new_hot_question">
-     Tag: black-jeck
+     Tag: {{ tag }}
    </div>
-   <div class="row question">
-     <div class="col-3">
-  <img src={% static "img/9320067.jpg" %}>
-      
-    </div>
-    <div class="col-9">
-      <a href=#><h3>Lorem ipsum dolor sit amet,</h3></a>
-      <div>
-       consectetur adipiscing elit. Cras rutrum ac purus sit amet euismod. Nulla varius molestie elit at feugiat. Etiam leo purus, ultricies non quam at, tempor viverra massa. Donec mattis faucibus mauris nec viverra. Nulla facilisi.
-     </div>
-     
-   </div>
-   <div>
-    <button id="like_btn" class="btn">Like</button>
-    <div class="likes">22</div>
-    <div class="row_in_question">
-      <a href="#4" class="Answer_string">Answer(3)</a>
-      Tags:
-      <a href="#4" class="black-jeck">black-jeck</a>
-      <a href="#4">bender</a>
-    </div>
-  </div>
-</div>
-<div class="row question">
- <div class="col-3">
-    <img src={% static "img/9320067.jpg" %}>
-</div>
-<div class="col-9">
-  <a href=#><h3>Lorem ipsum dolor sit amet,</h3></a>
-  <div>
-   consectetur adipiscing elit. Cras rutrum ac purus sit amet euismod. Nulla varius molestie elit at feugiat. Etiam leo purus, ultricies non quam at, tempor viverra massa. Donec mattis faucibus mauris nec viverra. Nulla facilisi.
- </div> 
-</div>
-<div>
-  <button id="like_btn" class="btn">Like</button>
-  <div class="likes">22</div>
-  <div class="row_in_question">
-    <a href="#4" class="Answer_string">Answer(3)</a>
-    Tags:
-    <a href="#4" class="black-jeck">black-jeck</a>
-    <a href="#4">bender</a>
-  </div>
-</div>
-</div>
-<div class="row question">
- <div class="col-3">
-  <img src={% static "img/9320067.jpg" %}>
-</div>
-<div class="col-9">
-  <a href=#><h3>Lorem ipsum dolor sit amet,</h3></a>
-  <div>
-   consectetur adipiscing elit. Cras rutrum ac purus sit amet euismod. Nulla varius molestie elit at feugiat. Etiam leo purus, ultricies non quam at, tempor viverra massa. Donec mattis faucibus mauris nec viverra. Nulla facilisi.
- </div> 
-</div>
-<div>
-  <button id="like_btn" class="btn">Like</button>
-  <div class="likes">22</div>
-  <div class="row_in_question">
-    <a href="#4" class="Answer_string">Answer(3)</a>
-    Tags:
-    <a href="#4" class="black-jeck">black-jeck</a>
-    <a href="#4">bender</a>
-  </div>
-</div>
-</div>
+  {% for question in questions %}
+        {% include "include/question.html" %}
+    {% endfor %}
 {% endblock content %}
-{% block footer %}
-{% include "include/footer.html" %}
-{% endblock footer %}
+{% block pagination %}
+{% include "include/pagination.html" %}
+{% endblock pagination %}

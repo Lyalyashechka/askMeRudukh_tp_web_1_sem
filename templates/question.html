@@ -14,64 +14,24 @@
               <div class="likes">22</div>
             </div>
             <div class="col-9">
-              <a href=#><h3 class="title">{{ question.title }}</h3></a>
+              <h3 class="title">{{ question.title }}</h3>
               <div class="text" id="text_question">
                {{ question.text }}
              </div>
              <div class="row_in_question">
               Tags:
-              <a href="#4" class="black-jeck">black-jeck</a>
-              <a href="#4">bender</a>
+              {% for tag in tags %}
+                <a href="{% url "tag" tag=tag %}" class="black-jeck">{{ tag }}</a>
+                {% endfor %}
             </div>
 
           </div>
           <hr id="hr">
         </div>
-        <div class="row question">
-          <div class="col-3">
-            <img src="{% static "img/9320067.jpg" %}" id="main_ava">
-          </div>
-          <div class="col-9">
-            <a href=#><h3>Lorem ipsum dolor sit amet,</h3></a>
-            <div>
-             consectetur adipiscing elit. Cras rutrum ac purus sit amet euismod. Nulla varius molestie elit at feugiat. Etiam leo purus, ultricies non quam at, tempor viverra massa. Donec mattis faucibus mauris nec viverra. Nulla facilisi.
-           </div> 
-         </div>
-         <div>
-          <button id="like_btn" class="btn">Like</button>
-          <div class="likes">22</div>
-          <div class="row_in_question">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-              <label class="form-check-label" for="flexCheckChecked">
-              Correct  </label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row question">
-        <div class="col-3">
-          <img src="{% static "img/9320067.jpg" %}" id="main_ava">
-        </div>
-        <div class="col-9">
-          <a href=#><h3>Lorem ipsum dolor sit amet,</h3></a>
-          <div>
-           consectetur adipiscing elit. Cras rutrum ac purus sit amet euismod. Nulla varius molestie elit at feugiat. Etiam leo purus, ultricies non quam at, tempor viverra massa. Donec mattis faucibus mauris nec viverra. Nulla facilisi.
-         </div> 
-       </div>
-       <div>
-        <button id="like_btn" class="btn">Like</button>
-        <div class="likes">22</div>
-        <div class="row_in_question">
-         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-          <label class="form-check-label" for="flexCheckChecked">
-          Correct  </label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr id="hr">
+
+{% for answer in answers %}
+    {% include "include/answer.html" %}
+{% endfor %}
   <form>
     <textarea class="form-control"  rows="4" placeholder="Enter your answer here.."></textarea>
     <button type="button" class="btn btn-secondary btn_answer">Answer</button>

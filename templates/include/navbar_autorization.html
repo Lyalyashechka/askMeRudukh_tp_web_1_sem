@@ -3,7 +3,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand brand_askme" href="#">AskMeRudukh</a>
+        <a class="navbar-brand brand_askme" href="{% url 'index' %}">AskMeRudukh</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,7 +25,7 @@
              </li>
              <li>
                <div>
-                <a href=#1 class="href_settings"> Settings </a>
+                <a href="{% url 'settings' %}" class="href_settings"> Settings </a>
                 <a href=#2> log out </a>
               </div>
             </li>

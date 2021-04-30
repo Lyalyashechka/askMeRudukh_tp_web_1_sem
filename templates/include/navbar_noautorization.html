@@ -4,7 +4,7 @@
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand brand_askme" href="#">AskMeRudukh</a>
+        <a class="navbar-brand brand_askme" href="{% url 'index' %}">AskMeRudukh</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,8 +18,8 @@
            </li>
            <li class="nav-item user">
              <div>
-              <a href=#1 class="href_settings"> Log in </a>
-              <a href=#2> Register </a>
+              <a href="{% url 'login' %}" class="href_settings"> Log in </a>
+              <a href="{% url 'registration' %}"> Register </a>
             </div>
           </li>
         </ul>

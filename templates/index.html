@@ -7,16 +7,16 @@
 {% block content %}
     <div class="new_hot_question">
      New Question  
-     <a href="#3">Hot Question</a>
+     <a href="{% url 'index' %}">Hot Question</a>
    </div>
     {% for question in questions %}
         {% include "include/question.html" %}
     {% endfor %}
 {% endblock content %}
 
-{% block footer %}
-{% include "include/footer.html" %}
-{% endblock footer %}
+{% block pagination %}
+{% include "include/pagination.html" %}
+{% endblock pagination %}
 {% block linkjs %}
 <script type="text/javascript" src="{% static "js/like.js" %}"></script>
 {% endblock linkjs %}
