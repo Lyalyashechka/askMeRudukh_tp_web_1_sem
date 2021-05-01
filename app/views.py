@@ -3,6 +3,7 @@ import random
 from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from random import sample, choice
+
 questions = [
     {
         'id': idx,
