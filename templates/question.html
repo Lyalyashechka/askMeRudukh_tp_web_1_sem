@@ -20,7 +20,7 @@
              </div>
              <div class="row_in_question">
               Tags:
-              {% for tag in tags %}
+              {% for tag in question.tags.all %}
                 <a href="{% url "tag" tag=tag %}" class="black-jeck">{{ tag }}</a>
                 {% endfor %}
             </div>

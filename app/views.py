@@ -3,14 +3,16 @@ import random
 from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from random import sample, choice
+from app.models import *
 
-questions = [
-    {
-        'id': idx,
-        'title': f'Title number {idx}',
-        'text': f'Some text for question #{idx}'
-    } for idx in range(10)
-]
+
+#questions = [
+ #   {
+ #       'id': idx,
+  #      'title': f'Title number {idx}',
+   #     'text': f'Some text for question #{idx}'
+    #} for idx in range(10)
+#]
 
 answers = [
     {
@@ -24,14 +26,14 @@ list_all_tags = ['Perl', 'Python', 'TechnoPark', 'MYSQL', 'django', 'Mail.ru', '
 
 
 def paginate(objects_list, request, per_page=5):
-    paginator = Paginator(questions, 5)
+    paginator = Paginator(objects_list, per_page)
     page_number = request.GET.get('page')
     return paginator.get_page(page_number)
 
 
 def index(request):
-    question = paginate(questions, request)
-    return render(request, 'index.html', {'questions': question, "tags": sample(list_all_tags, 2)})
+    question = paginate(Question.objects.newest(), request)
+    return render(request, 'index.html', {'questions': question})
 
 
 def ask(request):
@@ -43,7 +45,8 @@ def login(request):
 
 
 def question(request, pk):
-     question = questions[pk]
+     question = Question.objects.by_id(pk).first()
+     answers = question.answers.hot()
      return render(request, "question.html", {"question": question, "answers": answers,
                                               "tags": sample(list_all_tags, 2)})
 

@@ -126,6 +126,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'app.User'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
