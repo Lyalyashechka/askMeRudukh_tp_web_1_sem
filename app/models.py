@@ -20,7 +20,7 @@ class TagManager(models.Manager):
 
 
 class Tag (models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, verbose_name='Tag')
 
     objects = TagManager()
 
@@ -29,17 +29,12 @@ class Tag (models.Model):
 
 
 class Like (models.Model):
-    count = models.IntegerField()
-
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
 
     content_type = models.ForeignKey(ContentType, default=None, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField(default=-1)
     content_object = GenericForeignKey()
-
-    def __str__(self):
-        return self.what_question
 
 
 class QuestionManager(models.Manager):
@@ -52,9 +47,12 @@ class QuestionManager(models.Manager):
     def by_id(self, qid):
         return self.all().filter(id=qid)
 
+    def by_tag(self, tag):
+        return self.all().filter(tags=tag)
+
 
 class Question (models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
     title = models.CharField(max_length=255)
     text = models.TextField()
@@ -76,7 +74,7 @@ class AnswerManager(models.Manager):
 class Answer (models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
-    what_question = models.ForeignKey(Question, related_name= 'answers', on_delete=models.CASCADE)
+    what_question = models.ForeignKey(Question, related_name='answers', on_delete=models.CASCADE)
     text = models.TextField()
     correct = models.BooleanField(default=False)
     likes = GenericRelation(Like)

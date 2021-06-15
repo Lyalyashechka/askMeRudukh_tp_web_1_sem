@@ -6,13 +6,6 @@ from random import sample, choice
 from app.models import *
 
 
-#questions = [
- #   {
- #       'id': idx,
-  #      'title': f'Title number {idx}',
-   #     'text': f'Some text for question #{idx}'
-    #} for idx in range(10)
-#]
 
 answers = [
     {
@@ -33,6 +26,11 @@ def paginate(objects_list, request, per_page=5):
 
 def index(request):
     question = paginate(Question.objects.newest(), request)
+    return render(request, 'index.html', {'questions': question})
+
+
+def hot(request):
+    question = paginate(Question.objects.most_popular(), request)
     return render(request, 'index.html', {'questions': question})
 
 
@@ -60,6 +58,6 @@ def settings(request):
 
 
 def tag(request, tag):
-    question = paginate(questions, request)
-    return render(request, 'tag.html', {'questions': question, "tags": [tag, random.choice(list_all_tags)], "tag": tag})
+    question = paginate(Tag.objects.question_by_tag(tag), request)
+    return render(request, 'tag.html', {'questions': question, "tag": tag})
 
