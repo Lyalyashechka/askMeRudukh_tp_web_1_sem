@@ -111,7 +111,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['users']:
-            self.fill_users(1)
+            self.fill_users(10000)
         if options['tags']:
             self.fill_tags(10000)
         if options['question']:
