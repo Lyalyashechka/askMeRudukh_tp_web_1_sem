@@ -1,21 +1,9 @@
 import random
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from random import sample, choice
 from app.models import *
-
-
-
-answers = [
-    {
-        'id': idx_ans,
-        'title': f'Answer number {idx_ans}',
-        'text': f'Some text for question #{idx_ans}'
-    } for idx_ans in range(5)
-]
-
-list_all_tags = ['Perl', 'Python', 'TechnoPark', 'MYSQL', 'django', 'Mail.ru', 'Voloshin', 'Firefox']
+from django.contrib import auth
 
 
 def paginate(objects_list, request, per_page=5):
@@ -45,13 +33,15 @@ def login(request):
 def question(request, pk):
      question = Question.objects.by_id(pk).first()
      answers = question.answers.hot()
-     return render(request, "question.html", {"question": question, "answers": answers,
-                                              "tags": sample(list_all_tags, 2)})
+     return render(request, "question.html", {"question": question, "answers": answers})
 
 
 def registration(request):
     return render(request, 'registration.html', {})
 
+def logout(request):
+    auth.logout(request)
+    return redirect(request.GET.get('next', '/'))
 
 def settings(request):
     return render(request, 'settings.html', {})
