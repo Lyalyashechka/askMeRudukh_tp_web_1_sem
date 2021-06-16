@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from app.models import *
 from django.contrib import auth
-
+from app.forms import *
 
 def paginate(objects_list, request, per_page=5):
     paginator = Paginator(objects_list, per_page)
@@ -27,7 +27,16 @@ def ask(request):
 
 
 def login(request):
-    return render(request, 'login.html', {})
+    if request.method == 'GET':
+        form = LoginForm()
+    else:
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            user = auth.authenticate(request, **form.cleaned_data)
+            if user is not None:
+                auth.login(request, user)
+                return redirect(request.GET.get('next', '/'))
+    return render(request, 'login.html', {'form': form})
 
 
 def question(request, pk):
