@@ -2,7 +2,7 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block link %}
-<link href="{% static " css/login.css" %}" rel="stylesheet">
+<link href="{% static "css/login.css" %}" rel="stylesheet">
 {% endblock link %}
 {% block header %}
 {% include "include/navbar.html" %}
@@ -10,8 +10,8 @@
 
 {% block content %}
 <h2 id="new_question">Log In</h2>
-<p id="invisible">Sorry, wrong password</p>
-<form class="login_form" method="POST" name="form">
+{% if error_message %}<p class="error_log_message">{{ error_message }}</p> {% endif %}
+<form class="login_form" method="POST" action="/login/?next={{ redirect_to }}" name="form" novalidate>
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
@@ -35,7 +35,7 @@
 </form>
 {% endblock content %}
 {% block linkjs %}
-<script type="text/javascript" src="{% static " js/login.js" %}"></script>
+<script type="text/javascript" src="{% static "js/login.js" %}"></script>
 {% endblock linkjs %}
 
 

@@ -18,13 +18,12 @@
 
 .login_form {
 	margin-top: 3%;
+	width: 40%
 }
 
 .form_log {
 	margin-top: 3%;
 }
-
-#invisible {
-	color: red;
-	display: none;
+.error_log_message {
+    color: red;
 }

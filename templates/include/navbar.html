@@ -30,14 +30,14 @@
                             <li>
                                 <div>
                                     <a href="{% url 'settings' %}" class="href_settings"> Settings </a>
-                                    <a href="{% url 'logout' %}"> log out </a>
+                                    <a href="{% url 'logout' %}?next={{ request.path }}"> log out </a>
                                 </div>
                             </li>
                             </li>
                             {% else %}
                             <li class="nav-item user">
                                 <div>
-                                    <a href="{% url 'login' %}" class="href_settings"> Log in </a>
+                                    <a href="{% url 'login' %}?next={{ request.path }}" class="href_settings"> Log in </a>
                                     <a href="{% url 'registration' %}"> Register </a>
                                 </div>
                             </li>

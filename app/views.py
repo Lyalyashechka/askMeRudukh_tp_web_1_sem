@@ -27,6 +27,8 @@ def ask(request):
 
 
 def login(request):
+    redirect_to = request.GET.get('next', '/')
+    error_message = None
     if request.method == 'GET':
         form = LoginForm()
     else:
@@ -35,8 +37,10 @@ def login(request):
             user = auth.authenticate(request, **form.cleaned_data)
             if user is not None:
                 auth.login(request, user)
-                return redirect(request.GET.get('next', '/'))
-    return render(request, 'login.html', {'form': form})
+                return redirect(redirect_to)
+            else:
+                error_message = "Sorry, wrong login or password"
+    return render(request, 'login.html', {'form': form, 'redirect_to': redirect_to, 'error_message': error_message})
 
 
 def question(request, pk):
