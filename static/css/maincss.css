@@ -170,12 +170,13 @@ main > .container {
 }
 
 footer {
-    position: static; /* Фиксированное положение */
-    left: 0; bottom: 0; /* Левый нижний угол */
+    position: static;
+    bottom: 0; /* Левый нижний угол */
     padding: 10px; /* Поля вокруг текста */
     background: #212529; /* Цвет фона */
     color: #fff; /* Цвет текста */
     width: 100%; /* Ширина слоя */
+
 }
 
 .pagination {

@@ -50,7 +50,26 @@ def question(request, pk):
 
 
 def registration(request):
-    return render(request, 'registration.html', {})
+    errors = []
+    if request.method == 'GET':
+        form = SignUpForm()
+    elif request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if request.POST['password'] != request.POST['password_confirm']:
+            errors.append('Bad password confirm')
+        elif form.is_valid():
+            req_data = request.POST
+            user = User.objects.create_user(username=req_data['username'], email=req_data['email'],
+                                            first_name=req_data['first_name'], last_name=req_data['last_name'])
+            user.set_password(request.POST['password_confirm'])
+            user.save()
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            errors += form.errors
+    else:
+        print(errors)
+    return render(request, 'registration.html', {'form': form, 'error_message': errors})
 
 def logout(request):
     auth.logout(request)
