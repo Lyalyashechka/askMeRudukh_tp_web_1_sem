@@ -16,8 +16,11 @@ main > .container {
 
 .row {
 	margin-top: 10px;
-}
 
+}
+.mid_block{
+    min-height: calc(100vh - 110px);
+}
 .navbar-nav {
 	width: 100%;
 }

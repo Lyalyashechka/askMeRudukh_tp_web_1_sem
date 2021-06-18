@@ -10,7 +10,7 @@
 {% block content %}
     <h2 id="new_question">Registration</h2>
 
-{#<form role="form" class="go-bottom">#}
+
     <form role="form" class="login_form" action="{% url 'registration' %}" method="POST" novalidate>
         {% csrf_token %}
 {% for error in error_message %}

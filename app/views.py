@@ -67,8 +67,6 @@ def registration(request):
             return redirect('/')
         else:
             errors += form.errors
-    else:
-        print(errors)
     return render(request, 'registration.html', {'form': form, 'error_message': errors})
 
 def logout(request):
