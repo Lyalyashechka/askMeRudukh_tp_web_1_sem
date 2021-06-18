@@ -29,9 +29,7 @@ def ask(request):
         form = AskForm()
     else:
         form = AskForm(data=request.POST)
-        print(request.POST)
         if form.is_valid():
-            print('validnaya forma')
             question = form.save(commit=False)
             question.author = request.user
             question.save()
@@ -63,7 +61,16 @@ def login(request):
 def question(request, pk):
      question = Question.objects.by_id(pk).first()
      answers = question.answers.hot()
-     return render(request, "question.html", {"question": question, "answers": answers})
+     form = AnswerForm(auto_id=False)
+     if request.method == 'GET':
+         form = AnswerForm(auto_id=False)
+     else:
+         form = AnswerForm(request.POST)
+         if form.is_valid():
+             answer = Answer.objects.create(author=request.user,
+                                            text=request.POST['text'],
+                                            what_question=question)
+     return render(request, "question.html", {"question": question, "answers": answers, 'form': form})
 
 
 def registration(request):
@@ -84,9 +91,11 @@ def registration(request):
             return redirect('/')
     return render(request, 'registration.html', {'form': form, 'error_message': errors})
 
+
 def logout(request):
     auth.logout(request)
     return redirect(request.GET.get('next', '/'))
+
 
 def settings(request):
     return render(request, 'settings.html', {})
