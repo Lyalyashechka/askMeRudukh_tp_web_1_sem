@@ -65,8 +65,6 @@ def registration(request):
             user.save()
             auth.login(request, user)
             return redirect('/')
-        else:
-            errors += form.errors
     return render(request, 'registration.html', {'form': form, 'error_message': errors})
 
 def logout(request):
