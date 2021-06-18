@@ -5,6 +5,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from app.models import *
 from django.contrib import auth
 from app.forms import *
+from django.contrib.auth.decorators import login_required
+
 
 def paginate(objects_list, request, per_page=5):
     paginator = Paginator(objects_list, per_page)
@@ -21,9 +23,24 @@ def hot(request):
     question = paginate(Question.objects.most_popular(), request)
     return render(request, 'index.html', {'questions': question})
 
-
+@login_required(login_url='/login/')
 def ask(request):
-    return render(request, 'ask.html', {})
+    if request.method == 'GET':
+        form = AskForm()
+    else:
+        form = AskForm(data=request.POST)
+        print(request.POST)
+        if form.is_valid():
+            print('validnaya forma')
+            question = form.save(commit=False)
+            question.author = request.user
+            question.save()
+            for tags in request.POST['tags'].split():
+                tag = Tag.objects.get_or_create(name=tags)[0]
+                question.tags.add(tag)
+                question.save()
+            return render(request, "question.html", {"question": question})
+    return render(request, 'ask.html', {'form': form, 'errors': form.errors})
 
 
 def login(request):

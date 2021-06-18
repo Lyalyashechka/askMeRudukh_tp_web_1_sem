@@ -1,5 +1,5 @@
 from django import forms
-from app.models import User
+from app.models import User, Question
 
 
 class LoginForm(forms.Form):
@@ -17,3 +17,12 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'email',)
+
+
+class AskForm(forms.ModelForm):
+    title = forms.CharField()
+    text = forms.TextInput()
+    tags = forms.CharField()
+    class Meta:
+        model = Question
+        fields = ['title', 'text', 'tags']
