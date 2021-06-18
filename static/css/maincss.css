@@ -40,15 +40,17 @@ main > .container {
 
 }
 .search {
-	width: 50%;
+	width: 30%;
 }
 
 .search_text {
-	width: 50%;
+	width: 100%;
 }
-
-.search_bottom {
-	width: 15%;
+.btn_ask {
+    width: 40%;
+}
+.btn_search_li{
+    width: 20%;
 }
 
 .brand_askme {
@@ -57,7 +59,7 @@ main > .container {
 
 .user {
 	width: 20%;
-	margin-left: -2%;
+
 }
 .user_ul {
 	list-style-type: none; 

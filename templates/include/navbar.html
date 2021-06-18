@@ -10,12 +10,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item search">
+                    <li class="search">
                         <form class="d-flex">
                             <input class="form-control me-2 search_text" type="search" placeholder="Search"
                                    aria-label="Search">
-                            <button class="btn btn-outline-success search_bottom" type="submit">ASK</button>
-                        </form>
+                             </form>
+                        <li class="btn_search_li">
+                            <button class="btn btn-outline-success search_bottom btn_ask" onclick="location.href={% url 'ask' %}">ASK</button>
+                </li>
                     </li>
                     <li class="nav-item avatar">
                         {% if request.user.is_authenticated %}
