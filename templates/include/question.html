@@ -2,7 +2,7 @@
 
  <div class="row question">
      <div class="col-3">
-      <img src={% static "img/9320067.jpg" %}>
+      <img src="{{ question.author.avatar.url }}">
 
     </div>
     <div class="col-9">
@@ -14,7 +14,7 @@
    </div>
    <div>
     <button id="like_btn" class="btn">Like</button>
-    <div class="likes">22</div>
+    <div class="likes">{{ question.rating }}</div>
     <div class="row_in_question">
       <a href="{% url 'one_question' pk=question.id %}" class="Answer_string">Answer(3)</a>
       Tags:

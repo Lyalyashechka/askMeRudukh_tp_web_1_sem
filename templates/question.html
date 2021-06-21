@@ -11,7 +11,7 @@
 {% block content %}
           <div class="row">
             <div class="col-3">
-              <img src="{% static "img/9320067.jpg" %}" id="main_ava">
+              <img src="{{ question.author.avatar.url }}" id="main_ava">
               <button id="like_btn" class="btn">Like</button>
               <div class="likes">22</div>
             </div>

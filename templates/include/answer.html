@@ -2,7 +2,7 @@
 
 <div class="row question">
           <div class="col-3">
-            <img src="{% static "img/9320067.jpg" %}" id="main_ava">
+            <img src="{{ answer.author.avatar.url }}" class="answer_ava">
           </div>
           <div class="col-9">
             <h3>{{ answer.title }}</h3>

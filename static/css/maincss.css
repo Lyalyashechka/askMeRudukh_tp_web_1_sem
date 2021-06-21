@@ -28,9 +28,12 @@ main > .container {
 .avatar {
 	width: 30%;
 }
-
+.ava_img {
+    height:100%;
+}
 .avatar img {
 	width: 40px;
+	height: 40px;
 	float: right;
 }
 

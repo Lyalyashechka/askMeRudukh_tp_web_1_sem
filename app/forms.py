@@ -59,8 +59,11 @@ class SettingsForm(forms.ModelForm):
         if user and (user.get().id != self.current_user.id):
             msg = u"This username has already been taken!"
             self._errors["username"] = self.error_class([msg])
+        email = User.objects.filter(username=self.cleaned_data['email'])
+        if email and (email.get().id != self.current_user.id):
+            msg = u"This email has already been taken!"
+            self._errors["email"] = self.error_class([msg])
         return self.cleaned_data
-
 
     class Meta:
         model = User
