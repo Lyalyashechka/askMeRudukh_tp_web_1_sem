@@ -12,7 +12,7 @@
 
     <h2 id="new_question">Settings</h2>
 
-    <form class="settings_form" method="post" name="form" novalidate>
+    <form class="settings_form" method="post" name="form" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
 
     {% bootstrap_form form %}

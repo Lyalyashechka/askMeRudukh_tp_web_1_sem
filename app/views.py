@@ -105,9 +105,12 @@ def settings(request):
                              'email': request.user.email}, user=request.user)
     else:
         form = SettingsForm(data=request.POST, files=request.FILES, user=request.user)
+        print(request.FILES)
         if form.is_valid():
             for change in form.changed_data:
+                print(change)
                 if change == 'avatar':
+                    print("request.FILES[change]")
                     setattr(request.user, change, request.FILES[change])
                 else:
                     setattr(request.user, change, request.POST[change])

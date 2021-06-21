@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User (AbstractUser):
-    avatar = models.ImageField(default="static/img/ava.jpg", upload_to="static/upload/")
+    avatar = models.ImageField(default="static/img/ava.jpg", upload_to="static/upload/", verbose_name="avatar")
 
     def __str__(self):
         return self.username

@@ -43,17 +43,24 @@ class AnswerForm(forms.ModelForm):
 class SettingsForm(forms.ModelForm):
     username = forms.CharField(required=False)
     email = forms.EmailField(required=False)
-    avatar = forms.ImageField(required=False)
+    avatar = forms.ImageField(required=False, widget=forms.FileInput)
 
     def __init__(self, *args, **kwargs):
         self.current_user = kwargs.pop('user', None)
         super(SettingsForm, self).__init__(*args, **kwargs)
 
-    def clean_username(self):
+    # def clean_username(self):
+    #     user = User.objects.filter(username=self.cleaned_data['username'])
+    #     if user and (user.get().id != self.current_user.id):
+    #         raise ValidationError(_(u"This username has already been taken"))
+    #     return self.cleaned_data['username']
+    def clean(self):
         user = User.objects.filter(username=self.cleaned_data['username'])
         if user and (user.get().id != self.current_user.id):
-            raise ValidationError(_(u"This username has already been taken"))
-        return self.cleaned_data['username']
+            msg = u"This username has already been taken!"
+            self._errors["username"] = self.error_class([msg])
+        return self.cleaned_data
+
 
     class Meta:
         model = User
