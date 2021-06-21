@@ -1,5 +1,7 @@
 from django import forms
 from app.models import User, Question, Answer
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 
 class LoginForm(forms.Form):
@@ -36,4 +38,25 @@ class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['text']
+
+
+class SettingsForm(forms.ModelForm):
+    username = forms.CharField(required=False)
+    email = forms.EmailField(required=False)
+    avatar = forms.ImageField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.current_user = kwargs.pop('user', None)
+        super(SettingsForm, self).__init__(*args, **kwargs)
+
+    def clean_username(self):
+        user = User.objects.filter(username=self.cleaned_data['username'])
+        if user and (user.get().id != self.current_user.id):
+            raise ValidationError(_(u"This username has already been taken"))
+        return self.cleaned_data['username']
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'avatar')
+
 

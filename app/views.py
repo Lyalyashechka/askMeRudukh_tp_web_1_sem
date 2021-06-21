@@ -23,6 +23,7 @@ def hot(request):
     question = paginate(Question.objects.most_popular(), request)
     return render(request, 'index.html', {'questions': question})
 
+
 @login_required(login_url='/login/')
 def ask(request):
     if request.method == 'GET':
@@ -37,7 +38,7 @@ def ask(request):
                 tag = Tag.objects.get_or_create(name=tags)[0]
                 question.tags.add(tag)
                 question.save()
-            return render(request, "question.html", {"question": question})
+            return redirect(f"/question/{question.id}")
     return render(request, 'ask.html', {'form': form, 'errors': form.errors})
 
 
@@ -61,7 +62,6 @@ def login(request):
 def question(request, pk):
      question = Question.objects.by_id(pk).first()
      answers = question.answers.hot()
-     form = AnswerForm(auto_id=False)
      if request.method == 'GET':
          form = AnswerForm(auto_id=False)
      else:
@@ -70,6 +70,7 @@ def question(request, pk):
              answer = Answer.objects.create(author=request.user,
                                             text=request.POST['text'],
                                             what_question=question)
+             return redirect(f"/question/{question.id}")
      return render(request, "question.html", {"question": question, "answers": answers, 'form': form})
 
 
@@ -97,8 +98,22 @@ def logout(request):
     return redirect(request.GET.get('next', '/'))
 
 
+@login_required(login_url='/login/')
 def settings(request):
-    return render(request, 'settings.html', {})
+    if request.method == 'GET':
+        form = SettingsForm(initial={'username': request.user.username,
+                             'email': request.user.email}, user=request.user)
+    else:
+        form = SettingsForm(data=request.POST, files=request.FILES, user=request.user)
+        if form.is_valid():
+            for change in form.changed_data:
+                if change == 'avatar':
+                    setattr(request.user, change, request.FILES[change])
+                else:
+                    setattr(request.user, change, request.POST[change])
+            request.user.save()
+            return redirect('settings')
+    return render(request, 'settings.html', {'form': form})
 
 
 def tag(request, tag):

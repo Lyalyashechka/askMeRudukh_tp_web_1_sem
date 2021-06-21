@@ -1,12 +1,17 @@
-.logs {
+/*.logs {
 	margin-top: 2%;
-}
+}*/
 
 #ava_settings {
 	width: 50%;
 }
 
-.form_log {
+.settings_form {
+    width: 70%;
+}
+
+
+.save_button {
 	margin-top: 4%;
 }
 
