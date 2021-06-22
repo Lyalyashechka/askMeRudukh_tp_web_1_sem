@@ -49,11 +49,6 @@ class SettingsForm(forms.ModelForm):
         self.current_user = kwargs.pop('user', None)
         super(SettingsForm, self).__init__(*args, **kwargs)
 
-    # def clean_username(self):
-    #     user = User.objects.filter(username=self.cleaned_data['username'])
-    #     if user and (user.get().id != self.current_user.id):
-    #         raise ValidationError(_(u"This username has already been taken"))
-    #     return self.cleaned_data['username']
     def clean(self):
         user = User.objects.filter(username=self.cleaned_data['username'])
         if user and (user.get().id != self.current_user.id):

@@ -16,7 +16,7 @@
     <button id="like_btn" class="btn">Like</button>
     <div class="likes">{{ question.rating }}</div>
     <div class="row_in_question">
-      <a href="{% url 'one_question' pk=question.id %}" class="Answer_string">Answer(3)</a>
+      <a href="{% url 'one_question' pk=question.id %}" class="Answer_string">Answer({{ question.answers.count }})</a>
       Tags:
         {% for tag in question.tags.all %}
       <a href="{% url "tag" tag=tag %}" class="black-jeck">{{ tag }}</a>
